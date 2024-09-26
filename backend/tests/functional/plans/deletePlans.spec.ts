@@ -23,11 +23,11 @@ var planId: String
 
 test.group('deletePlans', () => {
     test('delete plan with invalid token', async ({ client, assert }) => { 
-        const responseUser = await client.post('http://localhost:3333/api/users/register').json(userPayload)
+        const responseUser = await client.post('http://api.zalgow.link:3333/api/users/register').json(userPayload)
         token = responseUser.body().tokenUser.hash
         
         const responseRestaurant = await client
-            .post('http://localhost:3333/api/restaurants')
+            .post('http://api.zalgow.link:3333/api/restaurants')
             .json(restaurantPayload)
             .header('Authorization', `Bearer ${token}`)
         
@@ -47,7 +47,7 @@ test.group('deletePlans', () => {
         }
 
         const responseCreatePlan = await client
-            .post(`http://localhost:3333/api/plans/${restaurantId}`)
+            .post(`http://api.zalgow.link:3333/api/plans/${restaurantId}`)
             .json(planPayload)
             .header('Authorization', `Bearer ${token}`)
 
@@ -57,7 +57,7 @@ test.group('deletePlans', () => {
         planId = responseCreatePlan.body().idPlan
 
         const responseDeletePlan = await client
-            .delete(`http://localhost:3333/api/plans/${planId}`)
+            .delete(`http://api.zalgow.link:3333/api/plans/${planId}`)
             .header('Authorization', `aaaa`)
 
         responseDeletePlan.assertStatus(403)
@@ -66,7 +66,7 @@ test.group('deletePlans', () => {
 
     test('delete plan without token', async ({ client, assert }) => { 
         const responseDeletePlan = await client
-            .delete(`http://localhost:3333/api/plans/${planId}`)
+            .delete(`http://api.zalgow.link:3333/api/plans/${planId}`)
             
         responseDeletePlan.assertStatus(400)
         assert.deepEqual(responseDeletePlan.body(), { error: 'Authorization token is missing' })
@@ -74,7 +74,7 @@ test.group('deletePlans', () => {
 
     test('delete plan with valid token', async ({ client, assert }) => { 
         const responseDeletePlan = await client
-            .delete(`http://localhost:3333/api/plans/${planId}`)
+            .delete(`http://api.zalgow.link:3333/api/plans/${planId}`)
             .header('Authorization', `Bearer ${token}`)
             
         responseDeletePlan.assertStatus(200)

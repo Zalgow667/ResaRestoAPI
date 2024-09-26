@@ -22,11 +22,11 @@ var restaurantId: String
 
 test.group('createPlans', () => {
   test('create plan with invalid token', async ({ client, assert }) => {
-    const responseUser = await client.post('http://localhost:3333/api/users/register').json(userPayload)
+    const responseUser = await client.post('http://api.zalgow.link:3333/api/users/register').json(userPayload)
     token = responseUser.body().tokenUser.hash
 
     const responseRestaurant = await client
-      .post('http://localhost:3333/api/restaurants')
+      .post('http://api.zalgow.link:3333/api/restaurants')
       .json(restaurantPayload)
       .header('Authorization', `Bearer ${token}`)
 
@@ -46,7 +46,7 @@ test.group('createPlans', () => {
     }
 
     const responsePlan = await client
-      .post(`http://localhost:3333/api/plans/${restaurantId}`)
+      .post(`http://api.zalgow.link:3333/api/plans/${restaurantId}`)
       .json(planPayload)
       .header('Authorization', `aaaa`)
 
@@ -61,7 +61,7 @@ test.group('createPlans', () => {
     }
 
     const responsePlan = await client
-      .post(`http://localhost:3333/api/plans/${restaurantId}`)
+      .post(`http://api.zalgow.link:3333/api/plans/${restaurantId}`)
       .json(planPayload)
 
     responsePlan.assertStatus(400)
@@ -75,7 +75,7 @@ test.group('createPlans', () => {
     }
 
     const responsePlan = await client
-      .post(`http://localhost:3333/api/plans/${restaurantId}`)
+      .post(`http://api.zalgow.link:3333/api/plans/${restaurantId}`)
       .json(planPayload)
       .header('Authorization', `Bearer ${token}`)
 

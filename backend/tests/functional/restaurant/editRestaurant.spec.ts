@@ -22,11 +22,11 @@ var restaurantId: String
 
 test.group('editRestaurant', () => {
   test('edit restaurant with valid token', async ({ client, assert }) => {
-    const response = await client.post('http://localhost:3333/api/users/register').json(userPayload)
+    const response = await client.post('http://api.zalgow.link:3333/api/users/register').json(userPayload)
     token = response.body().tokenUser.hash
 
     const createResponse = await client
-      .post('http://localhost:3333/api/restaurants')
+      .post('http://api.zalgow.link:3333/api/restaurants')
       .json(restaurantPayload)
       .header('Authorization', `Bearer ${token}`)
 
@@ -51,7 +51,7 @@ test.group('editRestaurant', () => {
     }
 
     const updateResponse = await client
-      .put(`http://localhost:3333/api/restaurants/${restaurantId}`)
+      .put(`http://api.zalgow.link:3333/api/restaurants/${restaurantId}`)
       .json(updatePayload)
       .header('Authorization', `Bearer ${token}`)
 
@@ -79,7 +79,7 @@ test.group('editRestaurant', () => {
     }
 
     const response = await client
-      .put(`http://localhost:3333/api/restaurants/${restaurantId}`)
+      .put(`http://api.zalgow.link:3333/api/restaurants/${restaurantId}`)
       .json(updatePayload)
     response.assertStatus(400)
     assert.deepEqual(response.body(), { error: 'Authorization token is missing' })
@@ -99,7 +99,7 @@ test.group('editRestaurant', () => {
     }
 
     const updateResponse = await client
-      .put(`http://localhost:3333/api/restaurants/${restaurantId}`)
+      .put(`http://api.zalgow.link:3333/api/restaurants/${restaurantId}`)
       .json(updatePayload)
       .header('Authorization', `Bearer ${token}`)
     updateResponse.assertStatus(404)
@@ -108,12 +108,12 @@ test.group('editRestaurant', () => {
   
   test('edit restaurant with unauthorized user', async ({ client, assert }) => {
     const response = await client
-      .post('http://localhost:3333/api/users/register')
+      .post('http://api.zalgow.link:3333/api/users/register')
       .json({ ...userPayload, email: 'other.user@gmail.com' })
     const otherUserToken = response.body().tokenUser.hash
 
     const createResponse = await client
-      .post('http://localhost:3333/api/restaurants')
+      .post('http://api.zalgow.link:3333/api/restaurants')
       .json(restaurantPayload)
       .header('Authorization', `Bearer ${token}`)
     const restaurantId = createResponse.body().idRestaurant
@@ -129,7 +129,7 @@ test.group('editRestaurant', () => {
     }
 
     const updateResponse = await client
-      .put(`http://localhost:3333/api/restaurants/${restaurantId}`)
+      .put(`http://api.zalgow.link:3333/api/restaurants/${restaurantId}`)
       .json(updatePayload)
       .header('Authorization', `Bearer ${otherUserToken}`)
     updateResponse.assertStatus(401)
@@ -153,7 +153,7 @@ test.group('editRestaurant', () => {
     }
 
     const response = await client
-      .put(`http://localhost:3333/api/restaurants/${restaurantId}`)
+      .put(`http://api.zalgow.link:3333/api/restaurants/${restaurantId}`)
       .json(updatePayload)
       .header('Authorization', `Bearer ${token}`)
     response.assertStatus(404)
