@@ -8,7 +8,7 @@ module.exports = {
       production : {
         user : 'debian',
         host : '151.80.60.101',
-        ref  : 'origin/master',
+        ref  : 'main',
         repo : 'git@github.com:Zalgow667/ResaRestoAPI.git',
         path : '/home/debian/server',
         'pre-deploy-local': '',
