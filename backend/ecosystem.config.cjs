@@ -12,7 +12,7 @@ module.exports = {
         repo : 'git@github.com:Zalgow667/ResaRestoAPI.git',
         path : '/home/debian/server/ResaRestoAPI/backend',
         'pre-deploy-local': '',
-        'post-deploy' : 'npm install && pm2 reload ecosystem.config.cjs --env production',
+        'post-deploy': 'npm install && pm2 reload /home/debian/server/ResaRestoAPI/backend/ecosystem.config.cjs --env production',
         'pre-setup': ''
       }
     }
