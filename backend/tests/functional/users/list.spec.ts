@@ -91,7 +91,7 @@ test.group('Users', () => {
         assert.equal(editResponse.body().user.lastName, userPayload.lastName)
     })
 
-    test('login with email / password', async ({ client, assert }) => {
+    test('login with email / password', async ({ client }) => {
         const userPayload = {
             firstName: 'Test',
             lastName: 'Connection',
