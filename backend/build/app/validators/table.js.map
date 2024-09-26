@@ -1,0 +1,1 @@
+{"version":3,"file":"table.js","sourceRoot":"","sources":["../../../app/validators/table.ts"],"names":[],"mappings":"AAAA,OAAO,IAAI,MAAM,cAAc,CAAA;AAE/B,MAAM,CAAC,MAAM,iBAAiB,GAAG,IAAI,CAAC,OAAO,CACzC,IAAI,CAAC,MAAM,CAAC;IACR,MAAM,EAAE,IAAI,CAAC,MAAM,EAAE;IACrB,QAAQ,EAAE,IAAI,CAAC,MAAM,EAAE;IACvB,OAAO,EAAE,IAAI,CAAC,MAAM,EAAE;CACzB,CAAC,CACL,CAAA"}
