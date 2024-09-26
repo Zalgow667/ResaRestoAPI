@@ -16,6 +16,10 @@ const BookingsController = () => import('#controllers/bookings_controller')
 const SocialController = () => import('#controllers/social_controller')
 import router from '@adonisjs/core/services/router'
 
+router.get('/', async () => {
+  return 'Hello World!'
+})
+
 router
   .group(() => {
     router
