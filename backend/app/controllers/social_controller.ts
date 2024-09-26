@@ -18,11 +18,10 @@ export default class SocialController {
         const userName = googleUser.name.split(' ')
 
         let newUser
-        let token
-
+      
         if(!user) {
             newUser = await User.create({ firstName : userName[0], lastName : userName[1], email : googleUser.email, })
-            token = await User.accessTokens.create(newUser)
+            await User.accessTokens.create(newUser)
             const tokenUser = await this.userController.getTokenFromId(newUser.id_user)
 
             if(newUser){

@@ -19,7 +19,7 @@ export default class Service extends BaseModel {
   declare start: TimeLike
 
   @column()
-  declare end: DateTime
+  declare end: TimeLike
 
   @column()
   declare name: string

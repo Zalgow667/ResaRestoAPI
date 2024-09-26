@@ -16,6 +16,10 @@ const BookingsController = () => import('#controllers/bookings_controller')
 const SocialController = () => import('#controllers/social_controller')
 import router from '@adonisjs/core/services/router'
 
+router.get('/', async () => {
+  return 'Hello World!'
+})
+
 router
   .group(() => {
     router
@@ -44,16 +48,7 @@ router
         router.get('/user', [UsersController, 'getAllUsers'])
       })
       .prefix('all')
-      .middleware(async (ctx, next) => {
-        const allowedIp: string[] = ['zziziiz']
-
-        if (!allowedIp.includes(ctx.request.ip())) {
-          return 'caca'
-        }
-
-        return await next()
-      })
-
+    
     router
       .group(() => {
         router.post('/', [RestaurantsController, 'createRestaurant'])
