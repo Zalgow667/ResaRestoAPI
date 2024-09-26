@@ -19,7 +19,7 @@ export default class SocialController {
 
         let newUser
         let token
-
+      
         if(!user) {
             newUser = await User.create({ firstName : userName[0], lastName : userName[1], email : googleUser.email, })
             token = await User.accessTokens.create(newUser)
