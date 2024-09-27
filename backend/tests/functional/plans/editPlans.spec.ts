@@ -23,7 +23,7 @@ var planId: String
 
 test.group('editPlans', () => {
     test('edit plan with invalid token', async ({ client, assert }) => {
-        const responseUser = await client.post('http://api.zalgow.link:3333/api/users/register').json(userPayload)
+        const responseUser = await client.post('http://api.zalgow.link:30/api/users/register').json(userPayload)
         token = responseUser.body().tokenUser.hash
 
         const responseRestaurant = await client

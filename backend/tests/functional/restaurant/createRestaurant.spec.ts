@@ -22,7 +22,7 @@ var token: String
 test.group('createRestaurant', () => {
   test('create restaurant with missing token', async ({ client, assert }) => {
     const createrRsponse = await client
-      .post('http://api.zalgow.link:3333//api/restaurants')
+      .post('http://api.zalgow.xyz//api/restaurants')
       .json(restaurantPayload)
     
       createrRsponse.assertStatus(400)
@@ -33,7 +33,7 @@ test.group('createRestaurant', () => {
     token = '3330ba8d798cfe818adcda77dfd91aa67f2239572d4d6dd266ab7645304994bb'
 
     const response = await client
-      .post('http://api.zalgow.link:3333//api/restaurants')
+      .post('http://api.zalgow.xyz//api/restaurants')
       .json(restaurantPayload)
       .header('Authorization', `Bearer ${token}`)
     
@@ -42,11 +42,11 @@ test.group('createRestaurant', () => {
   })
 
   test('create restaurant with valid token', async ({ client, assert }) => {
-    const response = await client.post('http://api.zalgow.link:3333//api/users/register').json(userPayload)
+    const response = await client.post('http://api.zalgow.xyz//api/users/register').json(userPayload)
     token = response.body().tokenUser.hash
 
     const createResponse = await client
-      .post('http://api.zalgow.link:3333//api/restaurants')
+      .post('http://api.zalgow.xyz//api/restaurants')
       .json(restaurantPayload)
       .header('Authorization', `Bearer ${token}`)
     
