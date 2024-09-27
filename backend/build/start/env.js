@@ -12,6 +12,8 @@ export default await Env.create(new URL('../', import.meta.url), {
     DB_DATABASE: Env.schema.string(),
     SESSION_DRIVER: Env.schema.enum(['cookie', 'memory']),
     GITHUB_CLIENT_ID: Env.schema.string(),
-    GITHUB_CLIENT_SECRET: Env.schema.string()
+    GITHUB_CLIENT_SECRET: Env.schema.string(),
+    GOOGLE_CLIENT_ID: Env.schema.string(),
+    GOOGLE_CLIENT_SECRET: Env.schema.string()
 });
 //# sourceMappingURL=env.js.map
