@@ -1,8 +1,8 @@
 module.exports = {
   apps : [
       {
-        name: 'web-app',
-        script: './build/server.js',
+        name: 'API',
+        script: './build/server.ts',
         instances: 'max',
         exec_mode: 'cluster',
         autorestart: true,
