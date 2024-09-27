@@ -21,11 +21,11 @@ var token: String
 
 test.group('deleteRestaurant', () => {
   test('delete restaurant with valid token', async ({ client, assert }) => {
-    const response = await client.post('http://api.zalgow.xyz/api/users/register').json(userPayload)
+    const response = await client.post('https://api.zalgow.xyz/api/users/register').json(userPayload)
     token = response.body().tokenUser.hash
     
     const createResponse = await client
-      .post('http://api.zalgow.xyz/api/restaurants')
+      .post('https://api.zalgow.xyz/api/restaurants')
       .json(restaurantPayload)
       .header('Authorization', `Bearer ${token}`)
 
@@ -38,7 +38,7 @@ test.group('deleteRestaurant', () => {
     assert.equal(createResponse.body().phone, restaurantPayload.phone)
 
     const deleteResponse = await client
-      .delete(`http://api.zalgow.xyz/api/restaurants/${createResponse.body().idRestaurant}`)
+      .delete(`https://api.zalgow.xyz/api/restaurants/${createResponse.body().idRestaurant}`)
       .header('Authorization', `Bearer ${token}`)
     
     deleteResponse.assertStatus(200)
@@ -48,7 +48,7 @@ test.group('deleteRestaurant', () => {
   test('delete restaurant with invalid token', async ({ client, assert }) => {
     token = '3330ba8d798cfe818adcda77dfd91aa67f2239572d4d6dd266ab7645304994bb'
     const deleteResponse = await client
-      .delete(`http://api.zalgow.xyz/api/restaurants/1`)
+      .delete(`https://api.zalgow.xyz/api/restaurants/1`)
       .header('Authorization', `Bearer ${token}`)
     
     deleteResponse.assertStatus(404)
@@ -56,7 +56,7 @@ test.group('deleteRestaurant', () => {
   })
 
   test('delete restaurant without token', async ({ client, assert }) => {
-    const deleteResponse = await client.delete(`http://api.zalgow.xyz/api/restaurants/1`)
+    const deleteResponse = await client.delete(`https://api.zalgow.xyz/api/restaurants/1`)
     deleteResponse.assertStatus(400)
     assert.deepEqual(deleteResponse.body(), { error: 'Authorization token is missing' })
   })

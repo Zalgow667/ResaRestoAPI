@@ -23,11 +23,11 @@ var planId: String
 
 test.group('editPlans', () => {
     test('edit plan with invalid token', async ({ client, assert }) => {
-        const responseUser = await client.post('http://api.zalgow.xyz/api/users/register').json(userPayload)
+        const responseUser = await client.post('https://api.zalgow.xyz/api/users/register').json(userPayload)
         token = responseUser.body().tokenUser.hash
 
         const responseRestaurant = await client
-            .post('http://api.zalgow.xyz/api/restaurants')
+            .post('https://api.zalgow.xyz/api/restaurants')
             .json(restaurantPayload)
             .header('Authorization', `Bearer ${token}`)
 
@@ -47,7 +47,7 @@ test.group('editPlans', () => {
         }
 
         const responseCreatePlan = await client
-            .post(`http://api.zalgow.xyz/api/plans/${restaurantId}`)
+            .post(`https://api.zalgow.xyz/api/plans/${restaurantId}`)
             .json(planPayload)
             .header('Authorization', `Bearer ${token}`)
 
@@ -58,7 +58,7 @@ test.group('editPlans', () => {
         }
 
         const responseEditPlan = await client
-            .put(`http://api.zalgow.xyz/api/plans/${planId}`)
+            .put(`https://api.zalgow.xyz/api/plans/${planId}`)
             .json(editPayload)
             .header('Authorization', `InvalidToken`)
 
@@ -72,7 +72,7 @@ test.group('editPlans', () => {
         }
 
         const responseEditPlan = await client
-            .put(`http://api.zalgow.xyz/api/plans/${planId}`)
+            .put(`https://api.zalgow.xyz/api/plans/${planId}`)
             .json(editPayload)
 
         responseEditPlan.assertStatus(400)
@@ -85,7 +85,7 @@ test.group('editPlans', () => {
         }
 
         const responseEditPlan = await client
-            .put(`http://api.zalgow.xyz/api/plans/${planId + "213123213"}`)
+            .put(`https://api.zalgow.xyz/api/plans/${planId + "213123213"}`)
             .json(editPayload)
             .header('Authorization', `Bearer ${token}`)
 
@@ -99,7 +99,7 @@ test.group('editPlans', () => {
         }
 
         const responseEditPlan = await client
-            .put(`http://api.zalgow.xyz/api/plans/${planId}`)
+            .put(`https://api.zalgow.xyz/api/plans/${planId}`)
             .json(editPayload)
             .header('Authorization', `Bearer ${token}`)
 

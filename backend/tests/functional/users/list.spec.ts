@@ -9,7 +9,7 @@ test.group('Users', () => {
             password: 'P@ssword1',
         }
         
-        const response = await client.post('http://api.zalgow.xyz/api/users/register').json(userPayload)
+        const response = await client.post('https://api.zalgow.xyz/api/users/register').json(userPayload)
         response.assertStatus(200)
         assert.exists(response.body().tokenUser.hash)
         assert.exists(response.body().user)
@@ -23,7 +23,7 @@ test.group('Users', () => {
             password: 'P@ssword1',
         }
 
-        const response = await client.post('http://api.zalgow.xyz/api/users/register').json(userPayload)
+        const response = await client.post('https://api.zalgow.xyz/api/users/register').json(userPayload)
         response.assertStatus(422)
 
         const userPayload2 = {
@@ -33,7 +33,7 @@ test.group('Users', () => {
             password: 'Pssword',
         }
         const response2 = await client
-            .post('http://api.zalgow.xyz/api/users/register')
+            .post('https://api.zalgow.xyz/api/users/register')
             .json(userPayload2)
         response2.assertStatus(422)
     })
@@ -45,12 +45,12 @@ test.group('Users', () => {
             email: 'test.edition@gmail.com',
             password: 'P@ssword1',
         }
-        const response = await client.post('http://api.zalgow.xyz/api/users/register').json(userPayload)
+        const response = await client.post('https://api.zalgow.xyz/api/users/register').json(userPayload)
 
         const userId = response.body().user.idUser
 
         const response2 = await client
-            .put('http://api.zalgow.xyz/api/users/' + userId)
+            .put('https://api.zalgow.xyz/api/users/' + userId)
             .json(userPayload)
 
         response2.assertStatus(400)
@@ -64,7 +64,7 @@ test.group('Users', () => {
             password: 'P@ssword1',
         }
 
-        const response = await client.post('http://api.zalgow.xyz/api/users/register').json(userPayload)
+        const response = await client.post('https://api.zalgow.xyz/api/users/register').json(userPayload)
         const userId = response.body().user.idUser
         let token = response.body().tokenUser.hash
 
@@ -73,7 +73,7 @@ test.group('Users', () => {
         userPayload.lastName = 'edited'
 
         const editResponse = await client
-            .put('http://api.zalgow.xyz/api/users/' + userId)
+            .put('https://api.zalgow.xyz/api/users/' + userId)
             .header('Authorization', `Bearer ${token}`)
             .json(userPayload)
 
@@ -82,7 +82,7 @@ test.group('Users', () => {
         userPayload
 
         const responseWithFalseToken = await client
-            .put('http://api.zalgow.xyz/api/users/' + userId)
+            .put('https://api.zalgow.xyz/api/users/' + userId)
             .header('Authorization', `Bearer ${token}`)
             .json(userPayload)
         responseWithFalseToken.assertStatus(401)
@@ -99,13 +99,13 @@ test.group('Users', () => {
             password: 'P@ssword1',
         }
 
-        const response = await client.post('http://api.zalgow.xyz/api/users/register').json(userPayload)
+        const response = await client.post('https://api.zalgow.xyz/api/users/register').json(userPayload)
         response.assertStatus(200)
         const email = userPayload.email
         const password = userPayload.password
 
         const editResponse = await client
-        .post('http://api.zalgow.xyz/api/users/login')
+        .post('https://api.zalgow.xyz/api/users/login')
         .json({ email, password })
 
         editResponse.assertStatus(200)
@@ -122,13 +122,13 @@ test.group('Users', () => {
             email: 'test.connection2@gmail.com',
             password: 'P@ssword1',
         }
-        const response = await client.post('http://api.zalgow.xyz/api/users/register').json(userPayload)
+        const response = await client.post('https://api.zalgow.xyz/api/users/register').json(userPayload)
         response.assertStatus(200)
         const email = 'test.wrong@gmail.com'
         const password = userPayload.password
 
         const editResponse = await client
-            .post('http://api.zalgow.xyz/api/users/login')
+            .post('https://api.zalgow.xyz/api/users/login')
             .json({ email, password })
         editResponse.assertStatus(400)
     })

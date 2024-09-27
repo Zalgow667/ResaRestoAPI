@@ -45,12 +45,12 @@ let idService: any
 
 test.group('Services', () => {
   test('Create Service', async ({ client, assert }) => {
-    const response = await client.post('http://api.zalgow.xyz/api/users/register').json(user)
+    const response = await client.post('https://api.zalgow.xyz/api/users/register').json(user)
     response.assertStatus(200)
     userToken = response.body().tokenUser.hash
 
     const responseResto = await client
-      .post('http://api.zalgow.xyz/api/restaurants')
+      .post('https://api.zalgow.xyz/api/restaurants')
       .header('Authorization', `Bearer ${userToken}`)
       .json(restaurant)
     responseResto.assertStatus(200)
@@ -59,7 +59,7 @@ test.group('Services', () => {
     idRestaurant = responseResto.body().idRestaurant
 
     const responseService = await client
-      .post('http://api.zalgow.xyz/api/restaurants/' + idRestaurant + '/services')
+      .post('https://api.zalgow.xyz/api/restaurants/' + idRestaurant + '/services')
       .header('Authorization', `Bearer ${userToken}`)
       .json(service)
 
@@ -72,21 +72,21 @@ test.group('Services', () => {
   })
   test('Create a service on another restaurant', async ({ client }) => {
     const responseService = await client
-      .post('http://api.zalgow.xyz/api/restaurants/' + idRestaurant + '/services')
+      .post('https://api.zalgow.xyz/api/restaurants/' + idRestaurant + '/services')
       .header('Authorization', `Bearer ${userToken}` + 'a')
       .json(service2)
     responseService.assertStatus(400)
   })
   test('Create a service with mistakes', async ({ client }) => {
     const responseService = await client
-      .post('http://api.zalgow.xyz/api/restaurants/' + idRestaurant + '/services')
+      .post('https://api.zalgow.xyz/api/restaurants/' + idRestaurant + '/services')
       .header('Authorization', `Bearer ${userToken}`)
       .json(serviceErr)
     responseService.assertStatus(400)
   })
   test('Edit my service', async ({ client, assert }) => {
     const responseService = await client
-      .put('http://api.zalgow.xyz/api/restaurants/' + idRestaurant + '/services/' + idService)
+      .put('https://api.zalgow.xyz/api/restaurants/' + idRestaurant + '/services/' + idService)
       .header('Authorization', `Bearer ${userToken}`)
       .json(serviceEdit)
     responseService.assertStatus(200)
