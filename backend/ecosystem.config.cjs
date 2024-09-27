@@ -5,7 +5,6 @@ module.exports = {
 
   deploy : {
     production : {
-      key : 'key.pub',
       user : 'debian',
       host : '151.80.60.101',
       ref : 'main',
