@@ -2,7 +2,7 @@ module.exports = {
   apps : [
       {
         name: 'API',
-        script: './build/server.ts',
+        script: './build/bin/server.ts',
         instances: 'max',
         exec_mode: 'cluster',
         autorestart: true,
