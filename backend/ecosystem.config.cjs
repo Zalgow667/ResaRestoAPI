@@ -5,7 +5,6 @@ module.exports = {
       script: './source/backend/build/bin/server.js',
       instances: 'max',
       exec_mode: 'cluster',
-      version: '1.0.0',
       autorestart: true,
       env: {
         NODE_ENV: 'production', 
