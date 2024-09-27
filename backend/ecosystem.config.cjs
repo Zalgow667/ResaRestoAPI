@@ -6,10 +6,6 @@ module.exports = {
         instances: 'max',
         exec_mode: 'cluster',
         autorestart: true,
-        env: {
-          NODE_ENV: "production",
-          PORT: 3333   
-        }
       }, 
     ],
   
@@ -22,7 +18,11 @@ module.exports = {
         path : '/home/debian/server',
         'pre-deploy-local': '',
         'post-deploy': 'npm install && pm2 reload /home/debian/server/ResaRestoAPI/backend/ecosystem.config.cjs --env production',
-        'pre-setup': ''
+        'pre-setup': '',
+        env: {
+          NODE_ENV: "production",
+          PORT: 3333   
+        }
       }
     }
   };
